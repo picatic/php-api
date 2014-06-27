@@ -1,13 +1,24 @@
 {
     "name": "picatic/php-api",
     "description": "PHP Wrapper to access the Picatic API",
+    "license": "MIT",
     "authors": [
         {
-            "name": "James Sapara",
-            "email": "james@picatic.com"
+            "name": "Picatic and contributors",
+            "homepage": "https://github.com/picatic/php-api/contributors"
         }
     ],
+    "keywords": [
+        "picatic",
+        "event management",
+        "api"
+    ],
     "require": {
-        "jakeasmith/http_build_url": "*"
+        "jakeasmith/http_build_url": "*",
+        "php": ">=5.3",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "files": ["src/PicaticAPI.php"]
     }
 }
