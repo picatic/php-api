@@ -1,0 +1,13 @@
+{
+    "name": "picatic/php-api",
+    "description": "PHP Wrapper to access the Picatic API",
+    "authors": [
+        {
+            "name": "James Sapara",
+            "email": "james@picatic.com"
+        }
+    ],
+    "require": {
+
+    }
+}
