@@ -12,6 +12,11 @@ Our "static" methods are prefixed with "class": classRateLookup
 
 In some special cases, we prefix instance methods with "instance". Usually only when there is a similarly named "class" method.
 
+Composer
+========
+
+You can include the latest version of this package by adding `"picatic/php-api": "dev-master"` to your "require".
+
 How to Use
 ==========
 
