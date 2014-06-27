@@ -8,6 +8,6 @@
         }
     ],
     "require": {
-
+        "jakeasmith/http_build_url": "*"
     }
 }

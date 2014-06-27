@@ -1,5 +1,8 @@
 <?php
 
+// Composer Autoload
+require_once('../vendor/autoload.php');
+
 // interfaces
 require_once('PicaticAPI_Interface.php');
 require_once('Picatic_Model_Interface.php');

@@ -16,10 +16,10 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
   }
 
   public function apiUrl($path) {
-    return sprintf("%s/%s",$this->getPicaticApi()->getApiBaseUrl(),$path);
+    return sprintf("%s%s",$this->getPicaticApi()->getApiBaseUrl(),$path);
   }
 
-  public function request($method,$url, $data=null, $params=null) {
+  public function request($method, $url, $data=null, $params=null) {
     $request = curl_init();
 
 
@@ -29,7 +29,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
 
     $body = null;
     if ( is_array($data) && !empty($data) ) {
-      $body = json_encode($body,JSON_FORCE_OBJECT);
+      $body = json_encode($body, JSON_FORCE_OBJECT);
     } elseif ( is_array($data) && empty($data) ) {
       $body = json_encode(new Object());
     } else {
@@ -47,16 +47,18 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     // if we have data, this is a POST
     if ($data != null) {
       curl_setopt($request, CURLOPT_POST, 1);
-      curl_setopt($requestm CURLOPT_POSTFIELDS, $body);
+      curl_setopt($request, CURLOPT_POSTFIELDS, $body);
     }
 
     // build request
-    curl_setopt($request, CURLOPT_URL, $urlParsed);
+    $urlParsed['query'] = is_array($urlParsed['query']) ? http_build_query($urlParsed['query']) : $urlParsed['query'];
+    curl_setopt($request, CURLOPT_URL, http_build_url($urlParsed));
     curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
 
     $response = curl_exec($request);
 
+    $statusCode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 
     if ( curl_errno($request) == 0) {
       $result = json_decode($response,true);
@@ -68,7 +70,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
         return null; //@HACK throw exception
       }
     } else {
-      if ( curl_getinfo($request, CURLINFO_HTTP_CODE) == 404 ) {
+      if ( $statusCode ) {
         curl_close($request);
         throw new Picatic_Requestor_NotFound_Exception('Request response code: 404');
       } else {
