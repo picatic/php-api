@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Basic requestor for request
+ * Basic request dispatch using CURL
  */
 class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer_Interface {
 

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Provided standardized way to request resources
+ */
 interface Picatic_Requestor_Interface {
 
   /**
@@ -10,7 +13,7 @@ interface Picatic_Requestor_Interface {
    * @param  array $params [description]
    * @return array         [description]
    */
-  public function request($method,$url,$data=null,$params=null);
+  public function request($method, $url, $data=null, $params=null);
 
   /**
    * Take a relative API Url path and make it whole
