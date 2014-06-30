@@ -1,0 +1,26 @@
+{
+  "name": "php-api",
+  "version": "1.0.1",
+  "description": "PHP API build wrapper",
+  "main": "index.js",
+  "private": true,
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/picatic/php-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/picatic/php-api/issues"
+  },
+  "homepage": "https://github.com/picatic/php-api",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-phplint": "0.0.5",
+    "grunt-bump": "0.0.14"
+  }
+}
