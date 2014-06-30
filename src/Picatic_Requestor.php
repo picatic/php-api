@@ -65,7 +65,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
       $result = json_decode($response,true);
       if ( $result ) {
         return $result;
-      } else {);
+      } else {
         return null; //@HACK throw exception
       }
     } else {
@@ -79,9 +79,8 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
       } else if ( $statusCode == 422 ) {
         //@TODO Parse validation error into this Exception
         throw new Picatic_Requestor_Validation_Exception();
-      }
       } else if ( $statusCode == 500 ) {
-        throw new Picatic_Requestor_Server_Exception();)
+        throw new Picatic_Requestor_Server_Exception();
       } else {
         $message = sprintf('Unknown error: %s', $statusCode);
         try {
