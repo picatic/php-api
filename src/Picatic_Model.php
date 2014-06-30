@@ -128,7 +128,7 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
   }
 
   public function instanceAction($action) {
-    return $this->actionWithParams($action);
+    return $this->instanceActionWithParams($action);
   }
 
   public function instanceActionWithParams($action,$params=array()) {

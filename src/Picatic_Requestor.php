@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  * Basic request dispatch using CURL
@@ -60,19 +60,28 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
 
     $statusCode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 
-    if ( curl_errno($request) == 0) {
+    if ( curl_errno($request) == 0 && $statusCode >= 200 && $statusCode <= 299 ) {
+      curl_close($request);
       $result = json_decode($response,true);
       if ( $result ) {
-        curl_close($request);
         return $result;
-      } else {
-        curl_close($request);
+      } else {);
         return null; //@HACK throw exception
       }
     } else {
-      if ( $statusCode == 404) {
-        curl_close($request);
+      curl_close($request);
+      if ( $statusCode == 404 ) {
         throw new Picatic_Requestor_NotFound_Exception('Request response code: 404');
+      } else if ( $statusCode == 401 ) {
+        throw new Picatic_Requestor_Unauthorized_Exception();
+      } else if ( $statusCode == 403 ) {
+        throw new Picatic_Requestor_Forbidden_Exception();
+      } else if ( $statusCode == 422 ) {
+        //@TODO Parse validation error into this Exception
+        throw new Picatic_Requestor_Validation_Exception();
+      }
+      } else if ( $statusCode == 500 ) {
+        throw new Picatic_Requestor_Server_Exception();)
       } else {
         $message = sprintf('Unknown error: %s', $statusCode);
         try {
@@ -83,7 +92,6 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
         } catch (Exception $e) {
           $message = $e->getMessage();
         }
-        curl_close($request);
         throw new Picatic_Requestor_BadRequest_Exception($message);
       }
     }
