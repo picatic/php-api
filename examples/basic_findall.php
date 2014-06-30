@@ -1,6 +1,7 @@
 <?php
 
 // Include PicaticAPI, which includes everything else you need
+include('../vendor/autoload.php');
 include('../src/PicaticAPI.php');
 include('config.php');
 
