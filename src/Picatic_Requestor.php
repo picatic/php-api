@@ -59,8 +59,9 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     $response = curl_exec($request);
 
     $statusCode = curl_getinfo($request, CURLINFO_HTTP_CODE);
-
-    if ( curl_errno($request) == 0 && $statusCode >= 200 && $statusCode <= 299 ) {
+    $errno = curl_errno($request);
+    $error_message = curl_error($request);
+    if ( $errno == 0 && $statusCode >= 200 && $statusCode <= 299 ) {
       curl_close($request);
       $result = json_decode($response,true);
       if ( $result ) {
@@ -82,7 +83,11 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
       } else if ( $statusCode == 500 ) {
         throw new Picatic_Requestor_Server_Exception();
       } else {
-        $message = sprintf('Unknown error: %s', $statusCode);
+        if ( $errno != 0 ) {
+          $message = $error_message;
+        } else {
+          $message = sprintf('Unknown error: %s', $statusCode);
+        }
         try {
           $result = json_decode($response,true);
           if (isset($result['message'])) {
