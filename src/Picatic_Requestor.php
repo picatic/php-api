@@ -70,11 +70,11 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
         return null; //@HACK throw exception
       }
     } else {
-      if ( $statusCode ) {
+      if ( $statusCode == 404) {
         curl_close($request);
         throw new Picatic_Requestor_NotFound_Exception('Request response code: 404');
       } else {
-        $message = 'Unknown error';
+        $message = sprintf('Unknown error: %s', $statusCode);
         try {
           $result = json_decode($response,true);
           if (isset($result['message'])) {
