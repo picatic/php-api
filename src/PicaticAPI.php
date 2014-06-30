@@ -67,7 +67,8 @@ class PicaticAPI implements PicaticAPI_Interface {
   }
 
   public function setApiBaseUrl($apiBaseUrl) {
-    $this->apiBaseUrl = $apiBaseUrl;
+    $baseUrl = parse_url($apiBaseUrl);
+    $this->apiBaseUrl = http_build_url($baseUrl);
   }
 
   public function factory() {
