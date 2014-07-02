@@ -1,4 +1,9 @@
 
+= v1.0.3
+* normalize base url
+* method support for curl
+* better errors returned from curl
+
 = v1.0.1
 
 * Added additional exceptions on error responses to throw

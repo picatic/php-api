@@ -45,7 +45,7 @@ class Picatic_Requestor_Server_Exception extends Exception {
 /**
  * Request had validation errors
  */
-class Picatic_Requestor_Validation_Exceptionv extends Exception {
+class Picatic_Requestor_Validation_Exception extends Exception {
 
 }
 

@@ -31,7 +31,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     if ( is_array($data) && !empty($data) ) {
       $body = json_encode($body, JSON_FORCE_OBJECT);
     } elseif ( is_array($data) && empty($data) ) {
-      $body = json_encode(new Object());
+      $body = json_encode(new Object(), JSON_FORCE_OBJECT);
     } else {
       $body = $data;
     }
@@ -47,7 +47,12 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     // if we have data, this is a POST
     if ($data != null) {
       curl_setopt($request, CURLOPT_POST, 1);
+      curl_setopt($request, CURLOPT_CUSTOMREQUEST, 'POST');
       curl_setopt($request, CURLOPT_POSTFIELDS, $body);
+    } else if ($method == 'PUT') {
+      curl_setopt($request, CURLOPT_CUSTOMREQUEST, 'PUT');
+    } else if ($method == 'DELETE') {
+      curl_setopt($request, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }
 
     // build request
