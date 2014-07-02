@@ -20,8 +20,8 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
   }
 
   public function request($method, $url, $data=null, $params=null) {
+    $method = strtoupper($method);
     $request = curl_init();
-
 
     $urlParsed = parse_url($this->apiUrl($url));
 
@@ -45,7 +45,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     }
 
     // if we have data, this is a POST
-    if ($data != null) {
+    if ($method == 'POST') {
       curl_setopt($request, CURLOPT_POST, 1);
       curl_setopt($request, CURLOPT_CUSTOMREQUEST, 'POST');
       curl_setopt($request, CURLOPT_POSTFIELDS, $body);
