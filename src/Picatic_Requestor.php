@@ -68,8 +68,8 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
     $error_message = curl_error($request);
     if ( $errno == 0 && $statusCode >= 200 && $statusCode <= 299 ) {
       curl_close($request);
-      $result = json_decode($response,true);
-      if ( $result ) {
+      $result = json_decode($response, true);
+      if ( $result !== false) {
         return $result;
       } else {
         return null; //@HACK throw exception
