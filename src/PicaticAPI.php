@@ -17,6 +17,11 @@ require_once('Picatic_Fee.php');
 require_once('Picatic_Event.php');
 require_once('Picatic_Ticket_Price.php');
 require_once('Picatic_User.php');
+require_once('Picatic_Survey.php');
+require_once('Picatic_Survey_Question.php');
+require_once('Picatic_Survey_Question_Option.php');
+require_once('Picatic_Survey_Result.php');
+require_once('Picatic_Survey_Answer.php');
 
 // Exceptions
 require_once('Picatic_Requestor_Exceptions.php');
