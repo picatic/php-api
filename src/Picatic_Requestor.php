@@ -29,7 +29,7 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
 
     $body = null;
     if ( is_array($data) && !empty($data) ) {
-      $body = json_encode($body, JSON_FORCE_OBJECT);
+      $body = json_encode($data, JSON_FORCE_OBJECT);
     } elseif ( is_array($data) && empty($data) ) {
       $body = json_encode(new Object(), JSON_FORCE_OBJECT);
     } else {
