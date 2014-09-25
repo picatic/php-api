@@ -22,6 +22,7 @@ require_once('Picatic_Survey_Question.php');
 require_once('Picatic_Survey_Question_Option.php');
 require_once('Picatic_Survey_Result.php');
 require_once('Picatic_Survey_Answer.php');
+require_once('Picatic_Queue.php');
 
 // Exceptions
 require_once('Picatic_Requestor_Exceptions.php');
@@ -51,37 +52,69 @@ class PicaticAPI implements PicaticAPI_Interface {
     }
   }
 
+  /**
+   * Getter for apiKey
+   * @return [string] api key
+   */
   public function getApiKey() {
     return $this->apiKey;
   }
 
+  /**
+   * Setter for apiKey
+   * @param [string] $apiKey api key to use with requests
+   */
   public function setApiKey($apiKey) {
     $this->apiKey = $apiKey;
   }
 
+  /**
+   * Getter for apiVersion
+   * @return [string] get the API version prefix
+   */
   public function getApiVersion() {
     return $this->apiVersion;
   }
 
+  /**
+   * Setter for apiVersion
+   * @param [string] $apiVersion set the API version prefix
+   */
   public function setApiVersion($apiVersion) {
-    return $this->apiVersion;
+    $this->apiVersion = $apiVersion;
   }
 
+  /**
+   * Getter for baseUrl to API
+   * @return [string] URI to API without version prefix
+   */
   public function getApiBaseUrl() {
     return $this->apiBaseUrl;
   }
 
+  /**
+   * Setter for baseUrl to API
+   * @param [string] $apiBaseUrl URI to API without verion prefix
+   */
   public function setApiBaseUrl($apiBaseUrl) {
     $baseUrl = parse_url($apiBaseUrl);
     $this->apiBaseUrl = http_build_url($baseUrl);
   }
 
+  /**
+   * Get the model factory
+   * @return [Picatic_Model_Factory_Interface] instance of a model factory
+   */
   public function factory() {
     $factory = new $this->factoryName();
     $factory->setPicaticApi($this);
     return $factory;
   }
 
+  /**
+   * Get Request handler
+   * @return [Picatic_Requestor_Interface] new instance of a Requestor
+   */
   public function requestor() {
     $requestor = new $this->requestorName();
     $requestor->setPicaticApi($this);
