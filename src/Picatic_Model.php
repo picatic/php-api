@@ -194,8 +194,9 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
    */
   public function classActionWithParams($action, $params=null, $method=null, $data=null) {
     $requestor = $this->getPicaticApi()->requestor();
+    if ($method === null) { $method = 'get'; }
     $url = sprintf("%s/%s", self::classUrl(), $action);
-    $response = $requestor->request($method || 'get', $url, $data, $params);
+    $response = $requestor->request($method, $url, $data, $params);
     return $response;
   }
 }
