@@ -173,7 +173,7 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
     return $this->instanceActionWithParams($action);
   }
 
-  public function instanceActionWithParams($action,$params=array()) {
+  public function instanceActionWithParams($action, $params=array()) {
     $requestor = $this->getPicaticApi()->requestor();
     $url = sprintf("%s/%s", $this->instanceUrl(), $action);
     $response = $requestor->request('get', $url, null, $params);
@@ -184,10 +184,18 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
     return self::staticActionWithParams($action);
   }
 
-  public function classActionWithParams($action,$params=null) {
+  /**
+   * Perform a request as a Class action
+   * @param  [string] $action [description]
+   * @param  [array] $params [description]
+   * @param  [string] $method [description]
+   * @param  [array] $data   [description]
+   * @return [array]         [description]
+   */
+  public function classActionWithParams($action, $params=null, $method=null, $data=null) {
     $requestor = $this->getPicaticApi()->requestor();
     $url = sprintf("%s/%s", self::classUrl(), $action);
-    $response = $requestor->request('get', $url, null, $params);
+    $response = $requestor->request($method || 'get', $url, $data, $params);
     return $response;
   }
 }
