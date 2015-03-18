@@ -33,7 +33,7 @@ class Picatic_Model_Factory implements Picatic_Model_Factory_Interface, Picatic_
    * @param  array  $values initialize the model with the values provided
    * @return object         instance of model
    */
-  public function modelCreate($class,$values=array()) {
+  public function modelCreate($class, $values=array()) {
     $fullClassName = sprintf("Picatic_%s", $class);
 
     $instance = new $fullClassName();
@@ -48,7 +48,7 @@ class Picatic_Model_Factory implements Picatic_Model_Factory_Interface, Picatic_
    * @param  string $action name of model class action
    * @return mixed
    */
-  public function modelAction($class,$action) {
+  public function modelAction($class, $action) {
     return $this->modelCreate($class)->classAction($action);
   }
 
@@ -59,7 +59,7 @@ class Picatic_Model_Factory implements Picatic_Model_Factory_Interface, Picatic_
    * @param  array $params optional parameters to pass to the class action
    * @return mixed
    */
-  public function modelActionWithParams($class,$action,$params=null) {
-    return $this->modelCreate($class)->classActionWithParams($action,$params);
+  public function modelActionWithParams($class, $action, $params=null) {
+    return $this->modelCreate($class)->classActionWithParams($action, $params);
   }
 }

@@ -45,7 +45,7 @@ interface Picatic_Model_Interface {
    * @param  [assoc] $params query parameters
    * @return [type]     [description]
    */
-  public function find($id,$params=null);
+  public function find($id, $params=null);
 
   /**
    * fetch a set of models by id
@@ -72,7 +72,7 @@ interface Picatic_Model_Interface {
    * @param  array  $params [description]
    * @return [type]         [description]
    */
-  public function instanceActionWithParams($name,$params=array());
+  public function instanceActionWithParams($name, $params=array());
 
   /**
    * Preform an action on a classUrl
@@ -87,7 +87,7 @@ interface Picatic_Model_Interface {
    * @param  array  $params [description]
    * @return [type]         [description]
    */
-  public function classActionWithParams($name,$params=array());
+  public function classActionWithParams($name, $params=array());
 
 
 }

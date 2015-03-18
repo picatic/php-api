@@ -76,17 +76,20 @@ class Picatic_Requestor implements Picatic_Requestor_Interface, Picatic_Consumer
       }
     } else {
       curl_close($request);
+      $error_result = @json_decode($response, true);
+      $message = is_array($error_result) && array_key_exists('message', $error_result) ? $error_result['message'] : false;
       if ( $statusCode == 404 ) {
-        throw new Picatic_Requestor_NotFound_Exception('Request response code: 404');
+        throw new Picatic_Requestor_NotFound_Exception( $message ? $message : 'Request response code: 404');
       } else if ( $statusCode == 401 ) {
-        throw new Picatic_Requestor_Unauthorized_Exception();
+        throw new Picatic_Requestor_Unauthorized_Exception( $message ? $message : 'Unauthorized');
       } else if ( $statusCode == 403 ) {
-        throw new Picatic_Requestor_Forbidden_Exception();
+        throw new Picatic_Requestor_Forbidden_Exception( $message ? $message : 'Forbidden' );
       } else if ( $statusCode == 422 ) {
         //@TODO Parse validation error into this Exception
         throw new Picatic_Requestor_Validation_Exception();
       } else if ( $statusCode == 500 ) {
-        throw new Picatic_Requestor_Server_Exception();
+        print_r($response);
+        throw new Picatic_Requestor_Server_Exception( $message ? $message : 'Server Exception');
       } else {
         if ( $errno != 0 ) {
           $message = $error_message;

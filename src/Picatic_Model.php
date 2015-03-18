@@ -135,7 +135,7 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
     return $this->_values;
   }
 
-  public function find($id,$params=null) {
+  public function find($id, $params=null) {
     $this['id'] = $id;
     $requestor = $this->getPicaticApi()->requestor();
     $url = $this->instanceUrl();
@@ -164,7 +164,7 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
       $method = 'put';
     }
     $requestor = $this->getPicaticApi()->requestor();
-    $response = $requestor->request($method,$this->instanceUrl(), $this->getValues(), null);
+    $response = $requestor->request($method, $this->instanceUrl(), $this->getValues(), null);
     $this->refreshWithValues($response);
     return $this;
   }
