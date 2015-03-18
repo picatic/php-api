@@ -25,6 +25,7 @@ require_once('Picatic_Survey_Answer.php');
 require_once('Picatic_Queue.php');
 require_once('Picatic_Key_Value.php');
 require_once('Picatic_Option_Flag.php');
+require_once('Picatic_Package.php');
 
 // Exceptions
 require_once('Picatic_Requestor_Exceptions.php');
