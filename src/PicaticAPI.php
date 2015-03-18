@@ -23,6 +23,8 @@ require_once('Picatic_Survey_Question_Option.php');
 require_once('Picatic_Survey_Result.php');
 require_once('Picatic_Survey_Answer.php');
 require_once('Picatic_Queue.php');
+require_once('Picatic_Key_Value.php');
+require_once('Picatic_Option_Flag.php');
 
 // Exceptions
 require_once('Picatic_Requestor_Exceptions.php');
