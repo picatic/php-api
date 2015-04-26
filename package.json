@@ -1,6 +1,6 @@
 {
   "name": "php-api",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "PHP API build wrapper",
   "main": "index.js",
   "private": true,
