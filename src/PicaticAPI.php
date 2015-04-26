@@ -29,6 +29,7 @@ require_once('Picatic_Ticket.php');
 require_once('Picatic_Ticket_Price.php');
 require_once('Picatic_Ticket_Price_Discount.php');
 require_once('Picatic_User.php');
+require_once('Picatic_Checkout.php');
 
 // Exceptions
 require_once('Picatic_Requestor_Exceptions.php');
