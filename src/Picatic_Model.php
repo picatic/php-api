@@ -173,10 +173,11 @@ class Picatic_Model implements Picatic_Model_Interface, Picatic_Consumer_Interfa
     return $this->instanceActionWithParams($action);
   }
 
-  public function instanceActionWithParams($action, $params=array()) {
+  public function instanceActionWithParams($action, $params=array(), $method=null, $data=null) {
     $requestor = $this->getPicaticApi()->requestor();
+    if ($method === null) { $method = 'get'; }
     $url = sprintf("%s/%s", $this->instanceUrl(), $action);
-    $response = $requestor->request('get', $url, null, $params);
+    $response = $requestor->request($method, $url, $data, $params);
     return $response; //@HACK should wrap this in an object model of some sort
   }
 
